@@ -67,24 +67,24 @@ export function WalletNotFoundDialog({
             </div>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="gap-2 sm:gap-0 flex-col sm:flex-row">
+        <DialogFooter className="flex flex-col gap-2 sm:flex-row sm:justify-end">
           <Button
             variant="outline"
             onClick={onClose}
-            className="border-zinc-700 hover:bg-zinc-800 text-white w-full sm:w-auto"
+            className="border-zinc-700 hover:bg-zinc-800 text-white w-full sm:w-auto order-3 sm:order-1"
           >
             Cancel
           </Button>
           <Button
             onClick={() => window.open("https://www.hashpack.app/", "_blank")}
-            className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
+            className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto order-2 sm:order-2"
           >
             Install HashPack
             <ExternalLink className="ml-2 w-4 h-4" />
           </Button>
           <Button
             onClick={onUseDummy}
-            className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold w-full sm:w-auto"
+            className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold w-full sm:w-auto order-1 sm:order-3"
           >
             <Wallet className="mr-2 w-4 h-4" />
             Continue with Dummy Wallet
