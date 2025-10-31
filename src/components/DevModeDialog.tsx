@@ -74,12 +74,22 @@ export function DevModeDialog() {
 
             <div className="bg-blue-900/20 border border-blue-500/20 rounded-lg p-4 text-sm">
               <p className="font-semibold text-blue-400 mb-2">
-                For Production:
+                For Production (HTTPS):
               </p>
-              <p className="text-zinc-300">
-                Deploy to an HTTPS domain (Vercel, Netlify, etc.) and HashPack
-                will work with real wallets.
-              </p>
+              <ul className="list-disc list-inside space-y-1 text-zinc-300">
+                <li>
+                  <strong>HashPack Extension:</strong> Works automatically on
+                  HTTPS domains
+                </li>
+                <li>
+                  <strong>WalletConnect:</strong> Mobile app support with QR
+                  code pairing
+                </li>
+                <li>
+                  <strong>Fallback:</strong> System tries extension first, then
+                  WalletConnect
+                </li>
+              </ul>
             </div>
           </DialogDescription>
         </DialogHeader>
