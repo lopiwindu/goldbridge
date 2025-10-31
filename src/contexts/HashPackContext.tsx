@@ -54,7 +54,8 @@ export function HashPackProvider({ children }: { children: ReactNode }) {
   const [connectionMethod, setConnectionMethod] = useState<
     "hashpack" | "test" | null
   >(null);
-  const [showWalletNotFoundDialog, setShowWalletNotFoundDialog] = useState(false);
+  const [showWalletNotFoundDialog, setShowWalletNotFoundDialog] =
+    useState(false);
 
   useEffect(() => {
     // Check if wallet was previously connected

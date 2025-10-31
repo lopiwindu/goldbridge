@@ -17,7 +17,11 @@ const queryClient = new QueryClient({
 });
 
 function DialogManager() {
-  const { showWalletNotFoundDialog, setShowWalletNotFoundDialog, useDummyWallet } = useHashPack();
+  const {
+    showWalletNotFoundDialog,
+    setShowWalletNotFoundDialog,
+    useDummyWallet,
+  } = useHashPack();
 
   return (
     <>

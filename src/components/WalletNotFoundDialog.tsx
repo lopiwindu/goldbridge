@@ -17,7 +17,11 @@ interface WalletNotFoundDialogProps {
   onUseDummy: () => void;
 }
 
-export function WalletNotFoundDialog({ isOpen, onClose, onUseDummy }: WalletNotFoundDialogProps) {
+export function WalletNotFoundDialog({
+  isOpen,
+  onClose,
+  onUseDummy,
+}: WalletNotFoundDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px] bg-zinc-900 border-red-500/20">
@@ -30,14 +34,17 @@ export function WalletNotFoundDialog({ isOpen, onClose, onUseDummy }: WalletNotF
           </div>
           <DialogDescription className="text-zinc-300 text-left space-y-4 pt-2">
             <p>
-              The HashPack wallet extension is not installed or not detected in your browser.
+              The HashPack wallet extension is not installed or not detected in
+              your browser.
             </p>
 
             <div className="bg-zinc-800/50 rounded-lg p-4 space-y-3">
               <div className="flex items-start gap-3">
                 <Wallet className="w-5 h-5 text-yellow-500 mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-semibold text-white mb-2">Install HashPack:</p>
+                  <p className="font-semibold text-white mb-2">
+                    Install HashPack:
+                  </p>
                   <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-400">
                     <li>Visit hashpack.app to download the extension</li>
                     <li>Install it in your browser (Chrome/Brave/Firefox)</li>
@@ -53,8 +60,9 @@ export function WalletNotFoundDialog({ isOpen, onClose, onUseDummy }: WalletNotF
                 Or Continue Testing:
               </p>
               <p className="text-sm text-zinc-300">
-                You can use a <strong>dummy wallet</strong> to explore the UI and features. 
-                This wallet is simulated and cannot make real transactions.
+                You can use a <strong>dummy wallet</strong> to explore the UI
+                and features. This wallet is simulated and cannot make real
+                transactions.
               </p>
             </div>
           </DialogDescription>
@@ -68,7 +76,7 @@ export function WalletNotFoundDialog({ isOpen, onClose, onUseDummy }: WalletNotF
             Cancel
           </Button>
           <Button
-            onClick={() => window.open('https://www.hashpack.app/', '_blank')}
+            onClick={() => window.open("https://www.hashpack.app/", "_blank")}
             className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
           >
             Install HashPack
