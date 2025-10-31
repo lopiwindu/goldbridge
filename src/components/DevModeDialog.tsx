@@ -82,10 +82,12 @@ export function DevModeDialog() {
                   HTTPS domains
                 </li>
                 <li>
-                  <strong>Mobile App:</strong> Use HashPack mobile with dummy wallet option
+                  <strong>Mobile App:</strong> Use HashPack mobile with dummy
+                  wallet option
                 </li>
                 <li>
-                  <strong>Fallback:</strong> System detects extension automatically
+                  <strong>Fallback:</strong> System detects extension
+                  automatically
                 </li>
               </ul>
             </div>
