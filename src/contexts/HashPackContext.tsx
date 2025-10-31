@@ -20,6 +20,9 @@ interface HashPackContextType {
   testAccount: string | null;
   confirmTestAccount: () => void;
   connectionMethod: "hashpack" | "test" | null;
+  showWalletNotFoundDialog: boolean;
+  setShowWalletNotFoundDialog: (show: boolean) => void;
+  useDummyWallet: () => void;
 }
 
 const HashPackContext = createContext<HashPackContextType>({
@@ -34,6 +37,9 @@ const HashPackContext = createContext<HashPackContextType>({
   testAccount: null,
   confirmTestAccount: () => {},
   connectionMethod: null,
+  showWalletNotFoundDialog: false,
+  setShowWalletNotFoundDialog: () => {},
+  useDummyWallet: () => {},
 });
 
 export const useHashPack = () => useContext(HashPackContext);
@@ -48,6 +54,7 @@ export function HashPackProvider({ children }: { children: ReactNode }) {
   const [connectionMethod, setConnectionMethod] = useState<
     "hashpack" | "test" | null
   >(null);
+  const [showWalletNotFoundDialog, setShowWalletNotFoundDialog] = useState(false);
 
   useEffect(() => {
     // Check if wallet was previously connected
@@ -105,13 +112,8 @@ export function HashPackProvider({ children }: { children: ReactNode }) {
         const hashpack = (window as any).hashpack;
 
         if (!hashpack) {
-          // Extension not found - show helpful message
-          alert(
-            "HashPack wallet extension not detected.\n\n" +
-              "Please install HashPack from:\n" +
-              "https://www.hashpack.app/\n\n" +
-              "Or use HashPack mobile app to scan QR code (coming soon)"
-          );
+          // Extension not found - show dialog with dummy wallet option
+          setShowWalletNotFoundDialog(true);
           return;
         }
 
@@ -159,6 +161,18 @@ export function HashPackProvider({ children }: { children: ReactNode }) {
     setShowDevModeDialog(false);
   };
 
+  const useDummyWallet = () => {
+    // Generate dummy wallet for production testing
+    const dummyAccount = "0.0." + Math.floor(Math.random() * 900000 + 100000);
+    setAccountId(dummyAccount);
+    setIsConnected(true);
+    setConnectionMethod("test");
+    localStorage.setItem("hashpack_account_id", dummyAccount);
+    localStorage.setItem("connection_method", "test");
+    setShowWalletNotFoundDialog(false);
+    console.log("✅ Connected to dummy wallet:", dummyAccount);
+  };
+
   return (
     <HashPackContext.Provider
       value={{
@@ -173,6 +187,9 @@ export function HashPackProvider({ children }: { children: ReactNode }) {
         testAccount,
         confirmTestAccount,
         connectionMethod,
+        showWalletNotFoundDialog,
+        setShowWalletNotFoundDialog,
+        useDummyWallet,
       }}
     >
       {children}

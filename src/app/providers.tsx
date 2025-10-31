@@ -2,8 +2,9 @@
 
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashPackProvider } from "@/contexts/HashPackContext";
+import { HashPackProvider, useHashPack } from "@/contexts/HashPackContext";
 import { DevModeDialog } from "@/components/DevModeDialog";
+import { WalletNotFoundDialog } from "@/components/WalletNotFoundDialog";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,11 +16,26 @@ const queryClient = new QueryClient({
   },
 });
 
+function DialogManager() {
+  const { showWalletNotFoundDialog, setShowWalletNotFoundDialog, useDummyWallet } = useHashPack();
+
+  return (
+    <>
+      <DevModeDialog />
+      <WalletNotFoundDialog
+        isOpen={showWalletNotFoundDialog}
+        onClose={() => setShowWalletNotFoundDialog(false)}
+        onUseDummy={useDummyWallet}
+      />
+    </>
+  );
+}
+
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <HashPackProvider>
-        <DevModeDialog />
+        <DialogManager />
         {children}
       </HashPackProvider>
     </QueryClientProvider>
