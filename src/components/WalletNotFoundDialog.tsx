@@ -24,7 +24,7 @@ export function WalletNotFoundDialog({
 }: WalletNotFoundDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] bg-zinc-900 border-red-500/20">
+      <DialogContent className="sm:max-w-[550px] bg-zinc-900 border-red-500/20 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-5 h-5 text-red-500" />
@@ -41,11 +41,11 @@ export function WalletNotFoundDialog({
             <div className="bg-zinc-800/50 rounded-lg p-4 space-y-3">
               <div className="flex items-start gap-3">
                 <Wallet className="w-5 h-5 text-yellow-500 mt-0.5 shrink-0" />
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="font-semibold text-white mb-2">
                     Install HashPack:
                   </p>
-                  <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-400">
+                  <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-400 pl-1">
                     <li>Visit hashpack.app to download the extension</li>
                     <li>Install it in your browser (Chrome/Brave/Firefox)</li>
                     <li>Refresh this page</li>
@@ -67,7 +67,7 @@ export function WalletNotFoundDialog({
             </div>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex flex-col gap-2 sm:flex-row sm:justify-end">
+        <DialogFooter className="flex flex-col gap-2 sm:flex-row sm:justify-end sm:space-x-2">
           <Button
             variant="outline"
             onClick={onClose}
@@ -77,7 +77,7 @@ export function WalletNotFoundDialog({
           </Button>
           <Button
             onClick={() => window.open("https://www.hashpack.app/", "_blank")}
-            className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto order-2 sm:order-2"
+            className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto order-2"
           >
             Install HashPack
             <ExternalLink className="ml-2 w-4 h-4" />

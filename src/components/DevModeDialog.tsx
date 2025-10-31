@@ -33,7 +33,7 @@ export function DevModeDialog() {
 
   return (
     <Dialog open={showDevModeDialog} onOpenChange={setShowDevModeDialog}>
-      <DialogContent className="sm:max-w-[500px] bg-zinc-900 border-yellow-500/20">
+      <DialogContent className="sm:max-w-[550px] bg-zinc-900 border-yellow-500/20 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-5 h-5 text-yellow-500" />
@@ -49,7 +49,7 @@ export function DevModeDialog() {
 
             <div className="bg-zinc-800/50 rounded-lg p-4 space-y-2 text-sm">
               <p className="font-semibold text-white">Why this happens:</p>
-              <ul className="list-disc list-inside space-y-1 text-zinc-400">
+              <ul className="list-disc list-inside space-y-1 text-zinc-400 pl-1">
                 <li>Browser extensions don't inject into HTTP localhost</li>
                 <li>HashPack requires HTTPS for security</li>
                 <li>This is a browser limitation, not a bug</li>
@@ -64,7 +64,7 @@ export function DevModeDialog() {
               <p className="text-zinc-300">
                 We'll generate a <strong>test account</strong> for UI testing:
               </p>
-              <p className="font-mono text-yellow-400 bg-zinc-800 px-3 py-2 rounded">
+              <p className="font-mono text-yellow-400 bg-zinc-800 px-3 py-2 rounded break-all">
                 {testAccount}
               </p>
               <p className="text-xs text-zinc-500">
@@ -76,35 +76,33 @@ export function DevModeDialog() {
               <p className="font-semibold text-blue-400 mb-2">
                 For Production (HTTPS):
               </p>
-              <ul className="list-disc list-inside space-y-1 text-zinc-300">
+              <ul className="list-disc list-inside space-y-1 text-zinc-300 pl-1">
                 <li>
                   <strong>HashPack Extension:</strong> Works automatically on
                   HTTPS domains
                 </li>
                 <li>
-                  <strong>WalletConnect:</strong> Mobile app support with QR
-                  code pairing
+                  <strong>Mobile App:</strong> Use HashPack mobile with dummy wallet option
                 </li>
                 <li>
-                  <strong>Fallback:</strong> System tries extension first, then
-                  WalletConnect
+                  <strong>Fallback:</strong> System detects extension automatically
                 </li>
               </ul>
             </div>
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="gap-2 sm:gap-0">
+        <DialogFooter className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:space-x-2">
           <Button
             variant="outline"
             onClick={() => setShowDevModeDialog(false)}
-            className="border-zinc-700 hover:bg-zinc-800 text-white"
+            className="border-zinc-700 hover:bg-zinc-800 text-white w-full sm:w-auto"
             disabled={isConnecting}
           >
             Cancel
           </Button>
           <Button
             onClick={handleConnect}
-            className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold"
+            className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold w-full sm:w-auto"
             disabled={isConnecting}
           >
             {isConnecting ? (
